@@ -1,0 +1,28 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+<h1>Analysis of Jobs & Employees</h1>
+  <hr>
+<table class="table table-striped">
+  <tr>
+    <th> Employee ID</th>
+    <th> First Name</th>
+    <th> Last Name</th>
+    <th>Job ID</th>
+    <th>Job Name</th>
+    <th>Total Times Worked</th>
+    <th></th>
+  </tr>
+  {% for jobtr in jobtrac %}
+    <tr>
+        <td>{{jobtr.employee_id}}</td>
+        <td>{{jobtr.first_name}}</td>
+        <td>{{jobtr.last_name}}</td>
+      <td>{{jobtr.job_id}}</td>
+      <td>{{jobtr.job_name}}</td>
+      <td>{{jobtr.worked_time}}</td>
+      <td></td>
+    </tr>
+  {% endfor %}
+</table>
+{% endblock %}

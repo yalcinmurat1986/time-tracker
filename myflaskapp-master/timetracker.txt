@@ -1,0 +1,116 @@
+alter table employees add email varchar(50);
+
+delete  from jobs where job_name = 'first job';
+describe jobtracker;
+select * from jobs;
+select * from employees;
+ 
+select * from jobtracker;
+
+select  employee_id,job_id, sum(worked_time) from jobtracker group by employee_id, job_id;
+
+select  employee_id,job_id, create_date, sum(worked_time) as worked_time from jobtracker where employee_id =2 group by job_id, employee_id, create_date;
+
+select sum(worked_time) from jobtracker;
+
+alter table jobs modify job_id integer(11) auto_increment primary key;
+
+alter table employees modify username varchar(25) unique;
+
+drop table employees;
+
+create table employees (employee_id integer(11) auto_increment primary key, first_name varchar(25), last_name varchar(25),
+username varchar(25), email varchar(25), password varchar(100), register_date timestamp default current_timestamp);
+
+create table employees (employee_id integer(11) auto_increment primary key, first_name varchar(25), last_name varchar(25),
+username varchar(25), email varchar(25), password varchar(100), register_date timestamp default current_timestamp);
+
+INSERT INTO employees(first_name, last_name, email, username, password) VALUES('fatih', 'konus', 'asdfsdf', 'kkkk', 12);
+
+show tables;
+describe employees;
+
+alter table jobtracker change column time_spent worked_time integer(11);
+
+alter table jobtracker modify work_date date;
+alter table jobtracker modify end_time time;
+
+update jobs set job_id = '1' , job_name = 'first job', company = 'harvest inc';
+
+create table jobs (
+  job_name varchar(35), company varchar(35))  ;
+
+ALTER TABLE  jobtracker add description varchar(1000)  ;
+
+DELETE FROM employees WHERE employee_id = 2;
+
+
+SET SQL_SAFE_UPDATES = 0;
+
+describe employees;
+alter table employees modify employee_id integer(11) auto_increment primary key;
+
+
+
+select  employee_id, job_id, create_date, worked_time from jobtracker where employee_id =
+ (select employee_id from employees where username = 'fatih');
+ 
+ select employee_id, job_id, sum(worked_time) from jobtracker where employee_id = 1 group by job_id;
+ 
+ select * from jobtracker;
+ select employee_id, jt.job_id, job_name, sum(worked_time) from jobtracker jt join jobs jb on jt.job_id = jb.job_id 
+ where employee_id=1 group by job_id, employee_id, job_name;
+ 
+ select jt.employee_id, em.first_name, em.last_name, jt.job_id, jb.job_name,  sum(jt.worked_time) as worked_time from jobtracker jt 
+ join jobs jb on jb.job_id = jt.job_id  join employees em on em.employee_id = jt.employee_id group by jt.job_id, jt.employee_id, jb.job_name,
+ em.first_name, em.last_name order by job_id;
+ 
+ 
+create table employees (employee_id integer(11) auto_increment primary key,
+ first_name varchar(25), last_name varchar(25),
+username varchar(25), email varchar(25), password varchar(100),
+ register_date timestamp default current_timestamp);
+
+
+CREATE TABLE  jobs
+   (job_id integer(11),
+	job_name VARCHAR(25),
+    company varchar(25),
+    create_date timestamp default current_timestamp
+    );
+    
+
+CREATE TABLE jobtracker (
+	employee_id integer(11),
+    job_id integer(11),
+    work_date DATE,
+    start_time TIME,
+    end_time TIME,
+    worked_time integer(11),
+    create_date timestamp default current_timestamp,
+    description varchar(1000)
+);
+
+CREATE TABLE scene_list (entityId VARCHAR(64), acquisitionDate DATETIME,
+cloudCover DECIMAL(5,2),processingLevel VARCHAR(8),path INT,row INT,
+min_lat DECIMAL(8,5),min_lon DECIMAL(8,5),max_lat DECIMAL(8,5),
+max_lon DECIMAL(8,5),download_url VARCHAR(128));
+
+describe scene_list;
+
+LOAD DATA LOCAL INFILE '~/Desktop/Data\ Science/AWS/scene_list' INTO TABLE scene_list FIELDS TERMINATED BY ',';
+
+SELECT DISTINCT(a.entityId) AS Id, a.cloudCover
+FROM scene_list a
+INNER JOIN (
+SELECT entityId, acquisitionDate 
+FROM scene_list 
+WHERE acquisitionDate > ( 
+SELECT MAX(acquisitionDate)
+FROM scene_list 
+WHERE acquisitionDate < CURDATE() - INTERVAL 1 YEAR)	
+) b ON a.entityId = b.entityId AND a.acquisitionDate = b.acquisitionDate
+WHERE cloudCover < 50
+ORDER BY Id;
+
+ 

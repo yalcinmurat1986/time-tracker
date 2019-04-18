@@ -1,0 +1,24 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+  <h1>Edit Jobs</h1>
+  {% from "includes/_formhelpers.html" import render_field %}
+  <form method="POST" action="">
+      <div class="form-group">
+          {{ render_field(form.company_name, class_="form-control") }}
+        </div>
+    <div class="form-group">
+      {{ render_field(form.company_mail_address, class_="form-control") }}
+    </div>
+    <div class="form-group">
+      {{ render_field(form.POC_name, class_="form-control") }}
+    </div>
+    <div class="form-group">
+        {{ render_field(form.POC_email, class_="form-control") }}
+      </div>
+      <div class="form-group">
+          {{ render_field(form.POC_phone_number, class_="form-control") }}
+        </div>
+    <p><input class="btn btn-primary" type="submit" value="Submit">
+  </form>
+{% endblock %}

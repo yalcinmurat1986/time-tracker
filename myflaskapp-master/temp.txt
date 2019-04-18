@@ -1,0 +1,37 @@
+
+
+{% for jobtr in jobtrac %}
+<form action="Select">
+  <input list="browsers" name="browser">
+  <datalist id="browsers">
+      <option value="{{ jobtr.job_name }}">{{ jobtr.job_id }}</option>
+
+    </datalist>
+    <input type="submit">
+  </form>
+<hr>
+{% endfor %}
+
+
+
+ <tr>
+        <th>Job ID</th>
+        <th>Job Name</th>
+        <th>Employee</th>
+        <th>Work Date</th>
+        <th>Worked Time</th>
+        <th>Description</th>
+        
+        <th></th>
+        <th></th>
+        <th></th>
+        <th></th>
+      </tr>
+      {% for m in jobs3 %}
+        <tr>
+          <td>{{m.job_id}}</td>
+          <td>{{m.job_name}}</td>
+          <td>{{m.employee}}</td>
+          <td>{{m.work_date}}</td>
+          <td>{{m.worked_time}}</td>
+          <td>{{m.description}}</td>

@@ -1,0 +1,77 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+
+
+
+  <h1>{{jobs4[0]['company']}}'s Invoice <img src="https://cdn.wccftech.com/wp-content/uploads/2018/02/machine-learning-2.jpg" width="185" height="120" align="right"/></h1>
+    
+  
+  <table class="table table-striped">
+      
+ <tr>
+  <th>Job ID</th>
+  <th>Job Name</th>
+  <th>Employee</th>
+  <th>Work Date</th>
+  <th>Worked Time</th>
+  <th>Description</th>
+  
+  <th></th>
+
+
+
+</tr>
+{% for m in jobs3 %}
+  <tr>
+    <td>{{m.job_id}}</td>
+    <td>{{m.job_name}}</td>
+    <td>{{m.employee}}</td>
+    <td>{{m.work_date}}</td>
+    <td>{{m.worked_time}}</td>
+    <td>{{m.description | safe }}</td>
+
+ <br>
+
+
+   
+        <td>
+
+        </td>
+      </tr>
+    {% endfor %}
+  </table>
+
+
+
+  <table class="table table-striped">
+      
+    <tr>
+     <th>Job ID</th>
+     <th>Job Name</th>
+     <th>Employee</th>
+
+     
+     <th></th>
+   
+   
+   
+   </tr>
+   {% for m in jobs3 %}
+     <tr>
+       <td>{{m.job_id}}</td>
+       <td>{{m.job_name}}</td>
+       <td>{{m.employee}}</td>
+  
+   
+    <br>
+   
+   
+      
+           <td>
+   
+           </td>
+         </tr>
+       {% endfor %}
+     </table>
+{% endblock %}

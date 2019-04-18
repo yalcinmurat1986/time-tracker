@@ -1,0 +1,49 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+
+<h1>{{session.username}}'s Time Tracker</h1>
+<hr>
+
+<form class="form-inline" method="POST" action="{{ url_for('addnewjob') }}">
+    <div class="form-group">
+      <div class="input-group">
+          <span class="input-group-addon">Please select a job</span>
+              <select name="comp_select" class="selectpicker form-control">
+                {% for o in jobtrac1 %}
+                <option value="{{ o.job_id }}">{{ o.job_id }}    {{ o.job_name }} </option>
+                {% endfor %}
+              </select>
+      </div>
+      <button type="submit" class="btn btn-success">Add Job</button>
+    </div>
+  </form>
+<br>
+<br>
+
+  <table class="table table-striped">
+      <tr>
+        <th>Job ID</th>
+        <th>Job Name</th>
+        <th>Total Times Worked</th>
+        <th>Job Status</th>
+        <th></th>
+        <th></th>
+      </tr>
+      {% for jobtr in jobtrac %}
+     
+        <tr>
+          <td>{{jobtr.job_id}}</td>
+          <td>{{jobtr.job_name}}</td>
+          <td>{{jobtr.worked_time}}</td>
+          <td style="background-color: rgba(228, 231, 63, 0.137)" style="background-position:inherit">{{jobtr.status}}  </td>
+    
+          <td><a href="/add_working_time/{{jobtr.job_id}}" class="btn btn-success pull-right">Add Working Time</a></td>
+          <td></td>
+        </tr>
+      {% endfor %}
+    </table>
+
+{% endblock %}
+
+<!--  -->

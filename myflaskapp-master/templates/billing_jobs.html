@@ -1,0 +1,36 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+
+  <h1>{{jobs2[0]['company']}}'s active jobs <img src="https://cdn.wccftech.com/wp-content/uploads/2018/02/machine-learning-2.jpg" width="185" height="120" align="right"/></h1>
+    
+  
+  <table class="table table-striped">
+      <tr>
+        <th>Job ID</th>
+        <th>Job Name</th>
+        <th>Company</th>
+        <th>Job Create Date</th>
+        <th>Created By</th>
+        
+        <th></th>
+        <th></th>
+        <th></th>
+        <th></th>
+      </tr>
+      {% for job in jobs2 %}
+        <tr>
+          <td>{{job.job_id}}</td>
+          <td>{{job.job_name}}</td>
+          <td>{{job.company}}</td>
+          <td>{{job.create_date}}</td>
+          <td>{{job.who_created}}</td>
+
+        <td><a href="get_bill/{{job.job_id}}" class="btn btn-default pull-right">Get Bill</a></td>
+        <td>
+
+        </td>
+      </tr>
+    {% endfor %}
+  </table>
+{% endblock %}

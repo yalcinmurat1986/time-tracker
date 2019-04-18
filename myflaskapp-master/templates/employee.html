@@ -1,0 +1,12 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+
+<h1>{{employee.first_name}}</h1>
+  <small>Written by {{employee.first_name}} on {{employee.first_name}}</small>
+  <hr>
+  <div>
+    {{employee.first_name | safe}}
+  </div>
+
+{% endblock %}

@@ -1,0 +1,28 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+  <h1>Billings <img src="https://cdn.wccftech.com/wp-content/uploads/2018/02/machine-learning-2.jpg" width="185" height="120" align="right"/></h1>
+    
+  
+  <table class="table table-striped">
+    <tr>
+
+      <th>Company Name</th>
+      <th>Active Jobs</th>
+
+      <th></th>
+      <th></th>
+    </tr>
+    {% for co in companies %}
+      <tr>
+        <td>{{co.company}}</td>
+        <td>{{co.activejobs}}</td>
+
+        <td><a href="billing_jobs/{{co.company}}" class="btn btn-success pull-right">See Billing Jobs</a></td>
+        <td>
+
+        </td>
+      </tr>
+    {% endfor %}
+  </table>
+{% endblock %}

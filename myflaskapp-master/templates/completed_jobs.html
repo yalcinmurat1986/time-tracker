@@ -1,0 +1,39 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+<h1>Completed Jobs</h1>
+<a class="btn btn-success" href="/jobs"> Show Active Jobs</a>
+
+<hr>
+<table class="table table-striped">
+  <tr>
+    <th>Job ID</th>
+    <th>Job Name</th>
+    <th>Company</th>
+    <th>Job Create Date</th>
+    <th>Created By</th>
+    
+    <th></th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+  {% for job in jobs1 %}
+    <tr>
+      <td>{{job.job_id}}</td>
+      <td>{{job.job_name}}</td>
+      <td>{{job.company}}</td>
+      <td>{{job.create_date}}</td>
+      <td>{{job.who_created}}</td>
+      <td><a href="status_active/{{job.job_id}}" class="btn btn-default pull-right">Mark as Active</a></td>
+     
+      <td><a href="edit_job/{{job.job_id}}" class="btn btn-default pull-right">Edit</a></td>
+      <td><form action="{{url_for('delete_job', id=job.job_id)}}" method="post">
+          <input type="hidden" name="_method" value="DELETE">
+          <input type="submit" value="Delete" class="btn btn-danger">
+        </form></td>
+    </tr>
+  {% endfor %}
+</table>
+{% endblock %}
+

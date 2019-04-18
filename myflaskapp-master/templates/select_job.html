@@ -1,0 +1,28 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+
+<h1>{{session.username}}'s Time Tracker</h1>
+<a class="btn btn-success href=/select_job"> Select Job</a>
+  <hr>
+<table class="popup">
+  <tr>
+    <th>Job ID</th>
+    <th>Job Name</th>
+    <th>Total Times Worked</th>
+    <th></th>
+    <th></th>
+  </tr>
+  {% for jobtr in jobtrac %}
+    <tr>
+      <td>{{jobtr.job_id}}</td>
+      <td>{{jobtr.job_name}}</td>
+      <td>{{jobtr.worked_time}}</td>
+
+      <td><a href="/add_working_time/{{jobtr.employee_id}}" class="btn btn-success pull-right">Add Working Time</a></td>
+      <td></td>
+    </tr>
+  {% endfor %}
+</table>
+
+{% endblock %}
